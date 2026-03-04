@@ -181,3 +181,37 @@ INSERT INTO LIGNE (COMMANDE_NUMERO, MEDICAMENT_REFERENCE, QUANTITE) VALUES
 (6, 6, 110), (6, 16, 65), (6, 26, 85), (6, 36, 60), (6, 91, 70),
 (7, 7, 80), (7, 17, 50), (7, 27, 95), (7, 37, 55), (7, 100, 45),
 (8, 8, 100), (8, 18, 75), (8, 28, 80), (8, 38, 70), (8, 48, 60);
+
+-- AJOUT  : Fournisseurs et relations avec les catégories
+-- 1. Insertion de 3 fournisseurs (On force l'ID pour faciliter les liaisons ensuite)
+INSERT INTO FOURNISSEUR (ID, NOM, EMAIL) VALUES 
+(1, 'PharmaPlus', 'maytraudmarie+f1@gmail.com'),
+(2, 'SanteMedic', 'maytraudmarie+f2@gmail.com'),
+(3, 'BioDistrib', 'maytraudmarie+f3@gmail.com');
+
+-- On réinitialise l'auto-incrément pour la table Fournisseur (car on a forcé les ID 1, 2 et 3)
+ALTER TABLE FOURNISSEUR ALTER COLUMN id RESTART WITH 4;
+
+-- 2. Liaison entre les catégories (1 à 10) et les fournisseurs
+-- Chaque catégorie est fournie par au moins 2 fournisseurs
+
+-- Catégorie 1 : Antalgiques
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (1, 1), (1, 2);
+-- Catégorie 2 : Anti-inflammatoires
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (2, 2), (2, 3);
+-- Catégorie 3 : Antibiotiques
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (3, 1), (3, 3);
+-- Catégorie 4 : Antihypertenseurs
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (4, 1), (4, 2);
+-- Catégorie 5 : Antidiabétiques
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (5, 2), (5, 3);
+-- Catégorie 6 : Antihistaminiques
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (6, 1), (6, 3);
+-- Catégorie 7 : Vitamines et Compléments
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (7, 1), (7, 2);
+-- Catégorie 8 : Médicaments Cardiovasculaires
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (8, 2), (8, 3);
+-- Catégorie 9 : Médicaments Gastro-intestinaux
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (9, 1), (9, 3);
+-- Catégorie 10 : Médicaments Respiratoires
+INSERT INTO categorie_fournisseur (categorie_code, fournisseur_id) VALUES (10, 1), (10, 2);
