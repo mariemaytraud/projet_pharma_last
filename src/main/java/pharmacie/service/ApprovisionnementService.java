@@ -3,7 +3,7 @@ package pharmacie.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +22,7 @@ import java.util.Map;
 public class ApprovisionnementService {
 
     private final MedicamentRepository medicamentRepository;
-    private final MailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Transactional(readOnly = true)
     public void verifierStocksEtEnvoyerMails() {
