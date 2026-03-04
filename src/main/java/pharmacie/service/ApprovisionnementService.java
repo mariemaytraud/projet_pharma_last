@@ -1,20 +1,20 @@
 package pharmacie.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import pharmacie.dao.MedicamentRepository;
 import pharmacie.entity.Fournisseur;
 import pharmacie.entity.Medicament;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +58,7 @@ public class ApprovisionnementService {
 
     private void envoyerMailAuFournisseur(Fournisseur fournisseur, List<Medicament> medicaments) {
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("maytraudmarie@gmail.com");
         message.setTo(fournisseur.getEmail());
         message.setSubject("Demande de devis de réapprovisionnement");
 
